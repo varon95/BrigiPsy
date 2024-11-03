@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Blog";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Mobile Menu -->
+        <nav class="navbar navbar-light bg-light d-md-none">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse" id="blogMenu">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#post1">Traumák Transzgenerációs Hatása</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#post2">Önegyüttérzés</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Desktop Sidebar -->
+        <div class="col-md-3 d-none d-md-block">
+            <nav class="navbar bg-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#post1">Traumák Transzgenerációs Hatása</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#post2">Önegyüttérzés</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Blog Content -->
+        <div class="col-md-9">
+            <!-- Post 1 -->
+            <article id="post1" class="mb-5">
+                <div class="card">
+                    <img src="~/images/imgBlog1.webp" class="card-img-top" alt="Traumák transzgenerációs hatása">
+                    <div class="card-body">
+                        <h5 class="card-title">Traumák Transzgenerációs Hatása</h5>
+                        <p class="card-text">
+                            Yehuda és munkatársainak 2007-es cikke egy jó példa a traumák transzgenerációs hatására. A kutatásban holokauszttúlélők gyerekeit vizsgálták. Azok a már felnőtt gyerekek, akiknek szülei (édesapjuk vagy édesanyjuk) a holokauszt hatásaként poszttraumás stressz zavarban (PTSD) szenvedtek, alacsonyabb kortizolszintjük volt, mint azoknak, akiknek szüleinél nem jelentkezett PTSD.
+                            A kortizolszint szerepet játszik stresszreakciónk szabályozásában, így a kutatás jelentősége, hogy rávilágít, a szülői PTSD befolyásolhatja, hogy a gyermek később hogyan tud a stresszel megküzdeni.
+                        </p>
+                        <p class="card-text">
+                            <strong>Fogalmak:</strong><br>
+                            <strong>Transzgenerációs hatás:</strong> Nemzedékeken átívelő hatás.<br>
+                            <strong>Poszttraumás stressz zavar:</strong> Traumatikus élmény által kiváltott mentális zavar, ami visszatérő emlékbetörésekkel, rémálmokkal, szorongással, alvászavarokkal járhat.<br>
+                            <strong>Kortizol:</strong> "Stresszhormon", ami a stressz hatására termelődik.<br>
+                            <strong>Epigenetikai hatás:</strong> A környezeti hatások befolyása a gének működésére.
+                        </p>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/17768269/" class="btn btn-primary">További információ</a>
+                    </div>
+                </div>
+            </article>
+            <!-- Post 2 -->
+            <article id="post2" class="mb-5">
+                <div class="card">
+                    <img src="~/images/imgBlog2.webp" class="card-img-top" alt="Önegyüttérzés">
+                    <div class="card-body">
+                        <h5 class="card-title">Önegyüttérzés</h5>
+                        <p class="card-text">
+                            Legutóbbi cikkemben az önegyüttérzésről írtam, ami röviden azt jelenti, hogy ugyanazzal a kedvességgel fordulunk önmagunkhoz, mint ahogy szeretteink felé. A cikkben pár gyakorlatot is felsoroltam, amik különösen hasznosak lehetnek azok számára, akik gyakran kritikusak magukkal.
+                        </p>
+                        <a href="https://pszichologuskereso.hu/.../hogyan-legy%C3%BCnk-kev..." class="btn btn-primary">Olvassa el a teljes cikket</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

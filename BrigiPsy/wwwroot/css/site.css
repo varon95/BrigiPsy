@@ -1,0 +1,37 @@
+body {
+    margin-top: 70px;
+}
+
+.section {
+    padding: 60px 0;
+}
+
+    .section .row {
+        align-items: center;
+    }
+
+.section-title {
+    font-family: 'Forum', serif;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 30px 0;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Forum', serif;
+}
+
