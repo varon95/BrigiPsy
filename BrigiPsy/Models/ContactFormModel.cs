@@ -15,7 +15,7 @@ namespace BrigiPsy.Models
         public string Message { get; set; }
 
         [Required(ErrorMessage = "Az adatkezelési nyilatkozat elfogadása kötelező.")]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "Az adatkezelési nyilatkozat elfogadása kötelező.")]
+        [Display(Name = "Adatkezelési nyilatkozat")]
         public bool AcceptPrivacyPolicy { get; set; }
     }
 }
