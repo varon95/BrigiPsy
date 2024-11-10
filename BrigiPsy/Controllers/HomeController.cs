@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BrigiPsy.Models;
-using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MimeKit;
-using System;
 
 namespace BrigiPsy.Controllers
 {
@@ -41,7 +39,7 @@ namespace BrigiPsy.Controllers
                     {
                         client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                         await client.ConnectAsync("smtp.gmail.com", 587, false);
-                        await client.AuthenticateAsync("borbasbrege@gmail.com", "kJkcal8966091");
+                        await client.AuthenticateAsync("borbasbrege@gmail.com", "cauu ctus ijcm xlcs");
                         await client.SendAsync(message);
                         await client.DisconnectAsync(true);
                     }

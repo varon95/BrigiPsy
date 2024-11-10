@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// Models/ContactFormModel.cs
+using System.ComponentModel.DataAnnotations;
 
 namespace BrigiPsy.Models
 {

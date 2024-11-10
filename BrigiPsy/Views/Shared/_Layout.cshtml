@@ -5,25 +5,9 @@
     <title>@ViewData["Title"] - Váradi-Borbás Brigitta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var scrollLinks = document.querySelectorAll('a[href^="#"]');
-        for (var i = 0; i < scrollLinks.length; i++) {
-            scrollLinks[i].addEventListener('click', function (e) {
-                e.preventDefault();
-                var targetId = this.getAttribute('href').substring(1);
-                var targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        }
-    });
-</script>
-
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -47,9 +31,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index", "Home")#kapcsolat">Kapcsolat</a>
                         </li>
+                        @*
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index", "Blog")">Blog</a>
                         </li>
+                        *@
                     </ul>
                 </div>
             </div>
@@ -64,7 +50,50 @@
         &copy; @DateTime.Now.Year Váradi-Borbás Brigitta | <a href="@Url.Action("DataUsage", "Home")">Adatkezelési nyilatkozat</a>
     </footer>
 
+    <!-- Include jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Include validation scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@3.2.12/dist/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <!-- Smooth scrolling script -->
+    <script>
+        $(document).ready(function () {
+            $('a.nav-link').click(function (e) {
+                var href = $(this).attr('href');
+                var currentUrl = window.location.href.split('#')[0];
+                var targetUrl = href.split('#')[0];
+                var targetHash = href.split('#')[1];
+
+                if (currentUrl === targetUrl && targetHash) {
+                    e.preventDefault();
+                    var target = $('#' + targetHash);
+                    if (target.length) {
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 600);
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- Prevent page jump on validation errors -->
+    <script>
+        $(function () {
+            $.validator.setDefaults({
+                invalidHandler: function (event, validator) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
