@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\images\img1.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
