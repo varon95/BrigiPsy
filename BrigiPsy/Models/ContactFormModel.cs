@@ -13,7 +13,7 @@ namespace BrigiPsy.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Az üzenet megadása kötelező.")]
-        public string Message { get; set; }
+        public string Üzenet { get; set; }
 
         [Required(ErrorMessage = "Az adatkezelési nyilatkozat elfogadása kötelező.")]
         [Display(Name = "Adatkezelési nyilatkozat")]
