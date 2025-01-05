@@ -1,0 +1,9 @@
+# Allow all crawlers full access
+User-agent: *
+Disallow:
+
+# Block the DataUsage page from being indexed
+Disallow: /DataUsage
+
+# Specify the sitemap location
+Sitemap: https://www.borbasbrigitta.com/sitemap.xml

@@ -1,16 +1,41 @@
 ﻿@model BrigiPsy.Models.ContactFormModel
 @{
-    ViewData["Title"] = "Főoldal";
+    ViewData["Title"] = "Váradi-Borbás Brigitta - Pszichológus Budapesten | Főoldal";
 }
 @if (TempData["Success"] != null)
 {
     <div class="alert alert-success">@TempData["Success"]</div>
 }
 
+<!-- Meta Tags -->
+<link rel="canonical" href="https://www.borbasbrigitta.com/" />
+<meta name="description" content="Váradi-Borbás Brigitta, pszichológus Budapesten. Egyéni pszichológiai konzultáció stresszkezelés, önbizalomépítés, és más mentális egészségi problémák megoldására." />
+<meta name="robots" content="index, follow" />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "LocalBusiness",
+      "name": "Váradi-Borbás Brigitta",
+      "url": "https://www.borbasbrigitta.com",
+      "image": "https://www.borbasbrigitta.com/images/VaradiBorbasBrigitta.webp",
+      "description": "Pszichológus Budapesten, egyéni konzultáció stresszkezelés, önbizalomépítés, és más mentális egészségi problémák kezelésére.",
+      "address": {
+        "@@type": "PostalAddress",
+        "streetAddress": "Egry József utca 19, Fsz 5",
+        "addressLocality": "Budapest",
+        "postalCode": "1111",
+        "addressCountry": "HU"
+      },
+      "telephone": "+36-20-488-2585"
+    }
+</script>
+
+
 <!-- Rólam Section -->
 <section id="rolam" class="section">
     <div class="container">
-        <!-- Subsection a -->
         <div class="d-flex flex-column flex-md-row align-items-center justify-content-start mb-5">
             <div class="text-center mb-3 mb-md-0">
                 <img src="~/images/VaradiBorbasBrigitta.webp" class="img-fluid rounded-circle" alt="Váradi-Borbás Brigitta fényképe" style="max-width: 250px; border: 3px solid #F3EDE0;" />
@@ -20,7 +45,6 @@
                 <h3>Pszichológus</h3>
             </div>
         </div>
-        <!-- Subsection b -->
         <div class="row">
             <div class="col-md-6 order-md-2">
                 <img src="~/images/img1.webp" class="img-fluid" alt="Kép" />
@@ -51,15 +75,12 @@
                 <img src="~/images/img2.webp" class="img-fluid" alt="Kép" />
             </div>
             <div class="col-md-6">
-                <!-- Experiences Content -->
                 <div style="font-family: forum, serif; font-size: 18px;">
-                    <!-- Experiences Content -->
                     <div class="text-center">
                         <h2 style="font-family: forum, serif;">Miben segíthetek?</h2>
                         <h6 style="font-family: forum, serif;">Egyéni pszichológiai konzultáció</h6>
                         <hr>
                     </div>
-
                     <ul class="list-unstyled" style="font-family: forum, serif; font-size: 18px;">
                         <li class="mb-2">Stresszkezelés, indulatkezelés</li>
                         <li class="mb-2">Rágódás, aggódás kezelése</li>
@@ -72,7 +93,6 @@
                         <li class="mb-2">Személyes motiváció megtalálása</li>
                         <li class="mb-2">Mentális egészség, önismeret fejlesztése</li>
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -87,20 +107,14 @@
                 <img src="~/images/img3.webp" class="img-fluid" alt="Kép" />
             </div>
             <div class="col-md-6 order-md-1">
-                <!-- Prices Content -->
-                <div style="font-family: forum, serif; font-size: 18px;">
-                    <!-- Prices Content -->
-                    <div class="text-center mb-4" style="font-family: forum, serif;">
-                        <p class="fw-bold" style="font-size: 25px; font-style: italic;">Egyéni pszichológiai konzultáció</p>
-                        <p style="font-size: 25px;">12.000 Ft/50 perc</p>
-                    </div>
-
-                    <div class="text-center mb-4" style="font-family: forum, serif;">
-                        <p class="fw-bold" style="font-size: 25px; font-style: italic;">Kedvezményes ár</p>
-                        <p style="font-size: 18px; font-style: italic;">(diákoknak, GYES/GYED-en lévő szülőknek, egyedülálló szülőknek, nyugdíjasoknak, munkanélkülieknek)</p>
-                        <p style="font-size: 25px;">9.000 Ft/50 perc</p>
-                    </div>
-
+                <div class="text-center mb-4" style="font-family: forum, serif;">
+                    <p class="fw-bold" style="font-size: 25px; font-style: italic;">Egyéni pszichológiai konzultáció</p>
+                    <p style="font-size: 25px;">12.000 Ft/50 perc</p>
+                </div>
+                <div class="text-center mb-4" style="font-family: forum, serif;">
+                    <p class="fw-bold" style="font-size: 25px; font-style: italic;">Kedvezményes ár</p>
+                    <p style="font-size: 18px; font-style: italic;">(diákoknak, GYES/GYED-en lévő szülőknek, egyedülálló szülőknek, nyugdíjasoknak, munkanélkülieknek)</p>
+                    <p style="font-size: 25px;">9.000 Ft/50 perc</p>
                 </div>
             </div>
         </div>
@@ -127,14 +141,12 @@
                     <h2 style="font-size:26px; font-family: forum, serif;">Lépjen velem kapcsolatba</h2>
                     <hr>
                 </div>
-
                 <div style="font-size:16px;">
                     <p>Ha kérdése van, vagy szeretne hozzám bejelentkezni, keressen bizalommal az alábbi elérhetőségeken.</p>
                     <p>Egry József utca 19, Fsz 5<br>Budapest, 1111</p>
                     <p><a href="mailto:varadiborbasbrigitta@gmail.com">varadiborbasbrigitta@gmail.com</a></p>
                     <p>Telefon: +36-20-488-2585</p>
                 </div>
-
                 <form asp-action="Contact" method="post">
                     @Html.AntiForgeryToken()
                     <div class="mb-3">
@@ -153,26 +165,17 @@
                         <span asp-validation-for="Üzenet" class="text-danger"></span>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input" asp-for="AcceptPrivacyPolicy" required="required"
-                               data-val="true"
-                               data-val-required="Az adatkezelési nyilatkozat elfogadása kötelező." />
+                        <input class="form-check-input" asp-for="AcceptPrivacyPolicy" required="required" data-val="true" data-val-required="Az adatkezelési nyilatkozat elfogadása kötelező." />
                         <label class="form-check-label" for="AcceptPrivacyPolicy">
                             Adatkezelési nyilatkozatot elolvastam és elfogadom. Megtekinthető
                             <a href="@Url.Action("DataUsage", "Home")">itt</a>.
                         </label>
                         <span asp-validation-for="AcceptPrivacyPolicy" class="text-danger"></span>
                     </div>
-
-                    <!-- Add Google Invisible reCAPTCHA -->
-                    <button class="g-recaptcha btn btn-primary"
-                            data-sitekey="6LdM6q4qAAAAAJgsazMifE628ERrYx647BHg_2un"
-                            data-callback="onSubmit"
-                            data-action="submit">
+                    <button class="g-recaptcha btn btn-primary" data-sitekey="6LdM6q4qAAAAAJgsazMifE628ERrYx647BHg_2un" data-callback="onSubmit" data-action="submit">
                         Üzenet elküldése
                     </button>
                 </form>
-
-                <!-- JavaScript for handling reCAPTCHA -->
                 <script>
                     function onSubmit(token) {
                         document.querySelector('form').submit();
@@ -182,7 +185,6 @@
         </div>
     </div>
 </section>
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
