@@ -163,15 +163,25 @@
                         <span asp-validation-for="AcceptPrivacyPolicy" class="text-danger"></span>
                     </div>
 
-
-                    <button type="submit" class="btn btn-primary">Üzenet elküldése</button>
+                    <!-- Add Google Invisible reCAPTCHA -->
+                    <button class="g-recaptcha btn btn-primary"
+                            data-sitekey="6LdM6q4qAAAAAJgsazMifE628ERrYx647BHg_2un"
+                            data-callback="onSubmit"
+                            data-action="submit">
+                        Üzenet elküldése
+                    </button>
                 </form>
+
+                <!-- JavaScript for handling reCAPTCHA -->
+                <script>
+                    function onSubmit(token) {
+                        document.querySelector('form').submit();
+                    }
+                </script>
             </div>
         </div>
     </div>
 </section>
-
-
 
 
 @section Scripts {

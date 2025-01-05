@@ -4,6 +4,10 @@ using MailKit.Net.Smtp;
 using MimeKit;
 using MailKit.Security;
 using System.Security.Authentication;
+using System.Text.Json;
+using System.Net.Http;
+using System.Text.Json;
+
 
 namespace BrigiPsy.Controllers
 {
@@ -21,8 +25,14 @@ namespace BrigiPsy.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Contact(ContactFormModel model)
+        public async Task<IActionResult> Contact(ContactFormModel model, [FromForm(Name = "g-recaptcha-response")] string recaptchaResponse)
         {
+            // Validate reCAPTCHA
+            if (!await IsReCaptchaValid(recaptchaResponse))
+            {
+                ModelState.AddModelError("", "A reCAPTCHA ellenőrzése sikertelen. Kérjük, próbálja újra.");
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -71,5 +81,25 @@ namespace BrigiPsy.Controllers
             // If we got this far, something failed; redisplay form
             return View("Index", model);
         }
+
+        private async Task<bool> IsReCaptchaValid(string token)
+        {
+            var secretKey = "6LdM6q4qAAAAAIK379L4yyDM3Kn5RaTTmkc_P9zH";
+            using var client = new HttpClient();
+
+            var response = await client.PostAsync(
+                "https://www.google.com/recaptcha/api/siteverify",
+                new FormUrlEncodedContent(new[]
+                {
+            new KeyValuePair<string, string>("secret", secretKey),
+            new KeyValuePair<string, string>("response", token)
+                })
+            );
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var jsonData = JsonSerializer.Deserialize<JsonElement>(jsonResponse);
+
+            return jsonData.GetProperty("success").GetBoolean();
+        }
     }
-}
+    }
