@@ -30,6 +30,9 @@
     <Content Update="wwwroot\images\img4.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\images\VaradiBorbasBrigitta.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\images\VáradiBorbásBrigitta.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
