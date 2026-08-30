@@ -3,3 +3,21 @@
 }
 <script nonce="@cspNonce" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <script nonce="@cspNonce" src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@3.2.12/dist/jquery.validate.unobtrusive.min.js"></script>
+<script nonce="@cspNonce">
+    window.onSubmit = function (token) {
+        var form = document.querySelector('form');
+        if (!form) {
+            return;
+        }
+
+        if (!$(form).valid()) {
+            var firstInvalidField = form.querySelector('.input-validation-error');
+            if (firstInvalidField) {
+                firstInvalidField.focus();
+            }
+            return;
+        }
+
+        form.submit();
+    };
+</script>
