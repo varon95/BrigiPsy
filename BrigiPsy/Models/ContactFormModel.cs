@@ -1,4 +1,3 @@
-﻿// Models/ContactFormModel.cs
 using System.ComponentModel.DataAnnotations;
 
 namespace BrigiPsy.Models
@@ -6,17 +5,22 @@ namespace BrigiPsy.Models
     public class ContactFormModel
     {
         [Required(ErrorMessage = "A név megadása kötelező.")]
-        public string Name { get; set; }
+        [StringLength(100, ErrorMessage = "A név legfeljebb 100 karakter lehet.")]
+        public string Name { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Az email megadása kötelező.")]
         [EmailAddress(ErrorMessage = "Érvényes email címet adjon meg.")]
-        public string Email { get; set; }
+        [StringLength(254, ErrorMessage = "Az email cím legfeljebb 254 karakter lehet.")]
+        public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Az üzenet megadása kötelező.")]
-        public string Üzenet { get; set; }
+        [StringLength(4000, ErrorMessage = "Az üzenet legfeljebb 4000 karakter lehet.")]
+        public string Üzenet { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Az adatkezelési nyilatkozat elfogadása kötelező.")]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Az adatkezelési nyilatkozat elfogadása kötelező.")]
         [Display(Name = "Adatkezelési nyilatkozat")]
         public bool AcceptPrivacyPolicy { get; set; }
+
+        public string? Website { get; set; }
     }
 }

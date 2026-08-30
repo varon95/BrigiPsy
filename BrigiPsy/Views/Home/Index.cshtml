@@ -1,6 +1,7 @@
 @model BrigiPsy.Models.ContactFormModel
 @{
     ViewData["Title"] = "Váradi-Borbás Brigitta - Pszichológus és pszichológiai szakfordító Budapesten | Főoldal";
+    var cspNonce = Context.Items["CspNonce"] as string;
 }
 @if (TempData["Success"] != null)
 {
@@ -13,7 +14,7 @@
 <meta name="robots" content="index, follow" />
 
 <!-- Structured Data -->
-<script type="application/ld+json">
+<script nonce="@cspNonce" type="application/ld+json">
     {
       "@@context": "https://schema.org",
       "@@type": "LocalBusiness",
@@ -148,19 +149,23 @@
                 </div>
                 <form asp-action="Contact" method="post">
                     @Html.AntiForgeryToken()
+                    <div style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+                        <label asp-for="Website">Weboldal</label>
+                        <input asp-for="Website" tabindex="-1" autocomplete="off" />
+                    </div>
                     <div class="mb-3">
                         <label asp-for="Name" class="form-label"></label>
-                        <input asp-for="Name" class="form-control" />
+                        <input asp-for="Name" class="form-control" maxlength="100" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label asp-for="Email" class="form-label"></label>
-                        <input asp-for="Email" class="form-control" />
+                        <input asp-for="Email" class="form-control" maxlength="254" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label asp-for="Üzenet" class="form-label"></label>
-                        <textarea asp-for="Üzenet" class="form-control" rows="5"></textarea>
+                        <textarea asp-for="Üzenet" class="form-control" rows="5" maxlength="4000"></textarea>
                         <span asp-validation-for="Üzenet" class="text-danger"></span>
                     </div>
                     <div class="form-check mb-3">
@@ -175,7 +180,7 @@
                         Üzenet elküldése
                     </button>
                 </form>
-                <script>
+                <script nonce="@cspNonce">
                     function onSubmit(token) {
                         document.querySelector('form').submit();
                     }
@@ -187,4 +192,13 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script nonce="@cspNonce">
+        $(function () {
+            $.validator.setDefaults({
+                invalidHandler: function (event, validator) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 }
