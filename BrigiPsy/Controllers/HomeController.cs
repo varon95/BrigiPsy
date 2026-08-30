@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using BrigiPsy.Models;
 using MailKit.Net.Smtp;
 using MimeKit;
@@ -19,6 +19,11 @@ namespace BrigiPsy.Controllers
         }
 
         public IActionResult DataUsage()
+        {
+            return View();
+        }
+
+        public IActionResult Translation()
         {
             return View();
         }
