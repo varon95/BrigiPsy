@@ -1,7 +1,9 @@
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model BrigiPsy.Models.ContactFormModel
 @{
     ViewData["Title"] = "Váradi-Borbás Brigitta - Pszichológus és pszichológiai szakfordító Budapesten | Főoldal";
     var cspNonce = Context.Items["CspNonce"] as string;
+    var recaptchaSiteKey = Configuration["Recaptcha:SiteKey"];
 }
 @if (TempData["Success"] != null)
 {
@@ -176,7 +178,7 @@
                         </label>
                         <span asp-validation-for="AcceptPrivacyPolicy" class="text-danger"></span>
                     </div>
-                    <button class="g-recaptcha btn btn-primary" data-sitekey="6LdM6q4qAAAAAJgsazMifE628ERrYx647BHg_2un" data-callback="onSubmit" data-action="submit">
+                    <button class="g-recaptcha btn btn-primary" data-sitekey="@recaptchaSiteKey" data-callback="onSubmit" data-action="submit">
                         Üzenet elküldése
                     </button>
                 </form>

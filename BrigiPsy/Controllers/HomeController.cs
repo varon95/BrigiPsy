@@ -14,15 +14,18 @@ namespace BrigiPsy.Controllers
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<HomeController> _logger;
         private readonly IWebHostEnvironment _environment;
+        private readonly IConfiguration _configuration;
 
         public HomeController(
             IHttpClientFactory httpClientFactory,
             ILogger<HomeController> logger,
-            IWebHostEnvironment environment)
+            IWebHostEnvironment environment,
+            IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
             _logger = logger;
             _environment = environment;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -74,13 +77,38 @@ namespace BrigiPsy.Controllers
                 return View("Index", model);
             }
 
+            var smtpHost = _configuration["Smtp:Host"];
+            var smtpUsername = _configuration["Smtp:Username"];
+            var smtpPassword = _configuration["Smtp:Password"];
+            var fromAddress = _configuration["Smtp:FromAddress"];
+            var fromName = _configuration["Smtp:FromName"];
+            var toAddress = _configuration["Smtp:ToAddress"];
+            var toName = _configuration["Smtp:ToName"];
+
+            if (string.IsNullOrWhiteSpace(smtpHost) ||
+                string.IsNullOrWhiteSpace(smtpUsername) ||
+                string.IsNullOrWhiteSpace(smtpPassword) ||
+                string.IsNullOrWhiteSpace(fromAddress) ||
+                string.IsNullOrWhiteSpace(toAddress))
+            {
+                _logger.LogError("SMTP configuration is incomplete. Ensure Smtp__Password is configured on the server.");
+                ModelState.AddModelError("", "Hiba történt az üzenet küldése során. Kérjük, próbálja meg később.");
+                return View("Index", model);
+            }
+
+            var smtpPort = 587;
+            if (int.TryParse(_configuration["Smtp:Port"], out var configuredPort))
+            {
+                smtpPort = configuredPort;
+            }
+
             try
             {
                 var safeName = model.Name.Replace('\r', ' ').Replace('\n', ' ').Trim();
 
                 var message = new MimeMessage();
-                message.From.Add(new MailboxAddress("BrigiPsy Website", "postmaster@borbasbrigitta.com"));
-                message.To.Add(new MailboxAddress("Brigitta", "info@borbasbrigitta.com"));
+                message.From.Add(new MailboxAddress(fromName ?? string.Empty, fromAddress));
+                message.To.Add(new MailboxAddress(toName ?? string.Empty, toAddress));
                 message.Subject = $"időpontkérés - {safeName}";
                 message.Body = new TextPart("plain")
                 {
@@ -88,8 +116,8 @@ namespace BrigiPsy.Controllers
                 };
 
                 using var client = new SmtpClient();
-                await client.ConnectAsync("smtp.forpsi.com", 587, SecureSocketOptions.StartTls);
-                await client.AuthenticateAsync("postmaster@borbasbrigitta.com", "4Tpu2T-DR3");
+                await client.ConnectAsync(smtpHost, smtpPort, SecureSocketOptions.StartTls);
+                await client.AuthenticateAsync(smtpUsername, smtpPassword);
                 await client.SendAsync(message);
                 await client.DisconnectAsync(true);
 
@@ -111,6 +139,13 @@ namespace BrigiPsy.Controllers
                 return false;
             }
 
+            var secretKey = _configuration["Recaptcha:SecretKey"];
+            if (string.IsNullOrWhiteSpace(secretKey))
+            {
+                _logger.LogError("reCAPTCHA configuration is incomplete. Ensure Recaptcha__SecretKey is configured on the server.");
+                return false;
+            }
+
             try
             {
                 var client = _httpClientFactory.CreateClient("recaptcha");
@@ -118,7 +153,7 @@ namespace BrigiPsy.Controllers
                     "https://www.google.com/recaptcha/api/siteverify",
                     new FormUrlEncodedContent(new[]
                     {
-                        new KeyValuePair<string, string>("secret", "6LdM6q4qAAAAAIK379L4yyDM3Kn5RaTTmkc_P9zH"),
+                        new KeyValuePair<string, string>("secret", secretKey),
                         new KeyValuePair<string, string>("response", token)
                     }));
 
