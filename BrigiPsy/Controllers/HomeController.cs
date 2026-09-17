@@ -67,13 +67,21 @@ namespace BrigiPsy.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            if (!await IsReCaptchaValid(recaptchaResponse))
+            if (!model.AcceptPrivacyPolicy)
             {
-                ModelState.AddModelError("", "A reCAPTCHA ellenőrzése sikertelen. Kérjük, próbálja újra.");
+                ModelState.AddModelError(
+                    nameof(ContactFormModel.AcceptPrivacyPolicy),
+                    "Az adatkezelési nyilatkozat elfogadása kötelező.");
             }
 
             if (!ModelState.IsValid)
             {
+                return View("Index", model);
+            }
+
+            if (!await IsReCaptchaValid(recaptchaResponse))
+            {
+                ModelState.AddModelError("", "A reCAPTCHA ellenőrzése sikertelen. Kérjük, próbálja újra.");
                 return View("Index", model);
             }
 

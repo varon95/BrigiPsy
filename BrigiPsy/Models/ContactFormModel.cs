@@ -17,7 +17,6 @@ namespace BrigiPsy.Models
         [StringLength(4000, ErrorMessage = "Az üzenet legfeljebb 4000 karakter lehet.")]
         public string Üzenet { get; set; } = string.Empty;
 
-        [Range(typeof(bool), "true", "true", ErrorMessage = "Az adatkezelési nyilatkozat elfogadása kötelező.")]
         [Display(Name = "Adatkezelési nyilatkozat")]
         public bool AcceptPrivacyPolicy { get; set; }
 
